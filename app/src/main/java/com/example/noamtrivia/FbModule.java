@@ -6,7 +6,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import com.google.firebase.databaset.DataSnapshot;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -21,6 +21,9 @@ public class FbModule {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance(); //מחזירה את האובייקט של המסד נתונים כדי שנוכל לערוך בו
         DatabaseReference reference = database.getReference("color"); //יוצר הפנייה להתיב "color" במסד נתונים.
+
+
+
         reference.addValueEventListener(
                 new ValueEventListener() {
 

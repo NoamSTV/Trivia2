@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/instruction"
+ android:name=".Instrucation"
+
+    tools:context=".Instrucation"
+    android:orientation="vertical"> <!-- שים לב שזו כבר לא אופציה אופקית אלא אנכית -->
+
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="הוראות המשחק"
+        android:textSize="50dp"
+        android:gravity="center"
+        android:textColor="#9C27B0"
+        android:background="#03A9F4"></TextView>
+
+
+
+    <TextView
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="המשחק הוא משחק חידון שמכיל בתוכו שאלות בסדר מעורבב. כל שאלה שתענו עליה נכון
+תזכה אתכם בנקודה. תשובה שגויה לא תזכה אתכם בנקודה. נסו להשיג את מירב הנקודות!"
+        android:textSize="20dp"
+        android:gravity="right"
+        android:textColor="#9C27B0"
+        android:background="#04B7F4"></TextView>
+
+
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#D760EC"
+        android:gravity="center"
+        android:text="חזרה"
+        android:textColor="#F3EFEF"
+
+        android:textSize="30dp" />
+
+
+</LinearLayout>

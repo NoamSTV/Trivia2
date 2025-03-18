@@ -2,6 +2,7 @@ package com.example.noamtrivia;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -18,6 +19,8 @@ public class MainActivity extends AppCompatActivity { //השורה שלך מגד
     private FbModule fbModule; //יציאת משתנה מסוג אובייקט
     private ConstraintLayout ll;
 
+    private String color;
+
 //המחלקה FbModule אחראית לתקשורת עם Firebase. היא קוראת נתונים מה-Firebase (כמו צבע הרקע) ומעדכנת את המידע ב-Firebase (כמו שינוי צבע הרקע).
 
     @Override
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity { //השורה שלך מגד
         setContentView(R.layout.activity_main);
 
         ll = findViewById(R.id.main);
+
 
         fbModule = new FbModule(this); //מצביעה על כך שהמחלקה FbModule כנראה מצפה לקבל אובייקט מסוג Context בתור פרמטר.
 
@@ -55,7 +59,10 @@ public class MainActivity extends AppCompatActivity { //השורה שלך מגד
 
     public void onClickStart(View view) {
         Intent intent = new Intent(this, GameActivity.class);
+        getCurrentBackgroundColor();
+        intent.putExtra("backgroundColor", color); // העברת הצבע ל-GameActivity
         startActivity(intent);
+
     }
 
     public void onClickSetting(View view) {
@@ -64,7 +71,13 @@ public class MainActivity extends AppCompatActivity { //השורה שלך מגד
     }
 
     public void onClickInstruction(View view) {
+
+        Intent i = new Intent(this, Instrucation.class);
+        startActivity(i);
+
+
     }
+
 
     public void setNewColorFromFb(String str) {
         // הפיירבייס קורא לפעולה בפעם הראשונה
@@ -75,6 +88,24 @@ public class MainActivity extends AppCompatActivity { //השורה שלך מגד
     //מציגה הודעה (Toast) עם הצבע שהתקבל.
     //משנה את צבע הרקע באמצעות קריאה לפונקציה setBackgroundColor(str).
 
+    public String getCurrentBackgroundColor() {
+        int colorInt = ((ColorDrawable) ll.getBackground()).getColor();  // מקבל את הצבע הנוכחי של הרקע //הוספתי ספרייה בשביל הפקודה ColorDrawble
+
+        // מבררים את שם הצבע לפי הערך מספרי (ההמרה מצבע לקוד מספרי)
+        if (colorInt == Color.RED) {
+            color = "Red";
+        } else if (colorInt == Color.BLUE) {
+            color = "Blue";
+        } else if (colorInt == Color.argb(255, 255, 192, 203)) { // צבע ורוד (Pink)
+            color = "Pink";
+        } else if (colorInt == Color.YELLOW) {
+            color = "Yellow";
+        } else {
+            color = "White";  // אם הצבע לא זוהה, תן צבע ברירת מחדל
+        }
+
+        return color;
+    }
 
     public void setBackgroundColor(String color)
     {
@@ -85,25 +116,34 @@ public class MainActivity extends AppCompatActivity { //השורה שלך מגד
             case "Red":
             {
                 ll.setBackgroundColor(Color.RED);
+                color = "red";
                 break;
             }
             case "Blue":
             {
                 ll.setBackgroundColor(Color.BLUE);
+                color = "blue";
+
                 break;
             }
             case "Pink":
             {
                 ll.setBackgroundColor(Color.argb(255,255,192,203));
+                color = "pink";
+
                 break;
             }
             case "Yellow":
             {
                 ll.setBackgroundColor(Color.YELLOW);
+                color = "Yellow";
+
                 break;
             }
 
             default:
+                color = "White";
+
                 ll.setBackgroundColor(Color.WHITE);
         }
     }
